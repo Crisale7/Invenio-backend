@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 @Service
 public class Activobl {
 
-    private final Activorepository activorepository;
+   /* private final Activorepository activorepository;
     private static final Logger LOG = (Logger) LoggerFactory.getLogger(Activobl.class);
 
     @Autowired
@@ -36,5 +36,5 @@ public class Activobl {
         LOG.info("Obteniendo activo con nombre: " + nombre);
         Activo activo = activorepository.findByNombre(nombre);
         return new Activodto(activo.getActivo_id(), activo.getModelo().getModelo_id(), activo.getEntrada().getEntrada_id(), activo.getNombre(), activo.getPrecio_unitario());
-    }
+    }*/
 }

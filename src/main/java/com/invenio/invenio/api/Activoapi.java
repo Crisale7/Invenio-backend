@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 @RequestMapping("/api/v1/activo")
 public class Activoapi {
 
-    private final Activobl activobl;
+   /* private final Activobl activobl;
     private static final Logger LOG = (Logger) LoggerFactory.getLogger(Activoapi.class);
 
     @Autowired
@@ -30,5 +30,5 @@ public class Activoapi {
     public Activodto obtenerActivo(@RequestParam String nombre) {
         LOG.info("Recibida solicitud GET para obtener activo con nombre: " + nombre);
         return activobl.obtenerActivo(nombre);
-    }
+    }*/
 }

@@ -24,6 +24,9 @@ public class TipoProducto {
         this.tipo_producto = tipo_producto;
     }
 
+    public TipoProducto(Long tipoProductoId) {
+    }
+
     public int getTipo_producto_id() {
         return tipo_producto_id;
     }
