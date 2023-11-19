@@ -2,6 +2,8 @@ package com.invenio.invenio.dao;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 // Grupo
 @Entity
 @Table(name="Grupo")
@@ -12,6 +14,8 @@ public class Grupo {
     private int grupo_id;
     @Column(name = "grupo")
     private String grupo;
+    @OneToMany(mappedBy = "grupo")
+    private List<Rol> roles;
 
     public Grupo() {
     }
@@ -37,4 +41,3 @@ public class Grupo {
         this.grupo = grupo;
     }
 }
-

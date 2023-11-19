@@ -3,16 +3,18 @@ package com.invenio.invenio.dao;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Entity
 @Table(name="Entrada")
 public class Entrada {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "entrada_id")
-    private int entrada_id;
+    @Column(name = "entrada_id") private int entrada_id;
     @Column(name = "fecha_entrada") private Timestamp fecha_entrada;
     @Column(name = "detalle") private String detalle;
+    @OneToMany(mappedBy = "entrada") private List<Activo> activos;
+
     public Entrada() {
     }
 

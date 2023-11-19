@@ -2,6 +2,8 @@ package com.invenio.invenio.dao;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name="Atributos")
 public class Atributos {
@@ -15,7 +17,10 @@ public class Atributos {
     private String tipo;
     @Column(name = "obligatorio")
     private boolean obligatorio;
+    @OneToMany(mappedBy = "atributos")
+    private List<ActivoAtributo> activo_atributos;
 
+    // constructores, getters y setters
     public Atributos() {
     }
 
@@ -50,11 +55,19 @@ public class Atributos {
         this.tipo = tipo;
     }
 
-    public boolean isObligatorio() {
+    public boolean getObligatorio() {
         return obligatorio;
     }
 
     public void setObligatorio(boolean obligatorio) {
         this.obligatorio = obligatorio;
+    }
+
+    public List<ActivoAtributo> getActivo_atributos() {
+        return activo_atributos;
+    }
+
+    public void setActivo_atributos(List<ActivoAtributo> activo_atributos) {
+        this.activo_atributos = activo_atributos;
     }
 }

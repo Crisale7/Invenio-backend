@@ -1,0 +1,14 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: TodoApp
+  datasource:
+    type: org.postgresql.jdbc2.optional.SimpleDataSource
+    username: postgres
+    password: 123456
+    url: jdbc:postgresql://localhost:5432/postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+    generate-ddl: true

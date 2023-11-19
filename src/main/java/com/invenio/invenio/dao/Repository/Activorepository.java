@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface Activorepository extends JpaRepository<Activo, Integer> {
+    Activo findByNombre(String nombre);
 }
+

@@ -9,17 +9,17 @@ import java.sql.Timestamp;
 public class Venta {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "venta_id")
-    private int venta_id;
-    @Column(name = "Activo_activo_id") private int Activo_activo_id;
+    @Column(name = "venta_id") private int venta_id;
+    @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "Activo_activo_id", insertable = false, updatable = false) private Activo activo;
     @Column(name = "fecha_venta") private Timestamp fecha_venta;
     @Column(name = "precio_total") private double precio_total;
+
     public Venta() {
     }
 
-    public Venta(int venta_id, int Activo_activo_id, Timestamp fecha_venta, double precio_total) {
+    public Venta(int venta_id, Activo activo, Timestamp fecha_venta, double precio_total) {
         this.venta_id = venta_id;
-        this.Activo_activo_id = Activo_activo_id;
+        this.activo = activo;
         this.fecha_venta = fecha_venta;
         this.precio_total = precio_total;
     }
@@ -32,12 +32,12 @@ public class Venta {
         this.venta_id = venta_id;
     }
 
-    public int getActivo_activo_id() {
-        return Activo_activo_id;
+    public Activo getActivo() {
+        return activo;
     }
 
-    public void setActivo_activo_id(int Activo_activo_id) {
-        this.Activo_activo_id = Activo_activo_id;
+    public void setActivo(Activo activo) {
+        this.activo = activo;
     }
 
     public Timestamp getFecha_venta() {

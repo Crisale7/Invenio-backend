@@ -2,8 +2,10 @@ package com.invenio.invenio.dao;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
-@Table(name="Tipo_Producto")
+@Table(name="TipoProducto")
 public class TipoProducto {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -11,6 +13,8 @@ public class TipoProducto {
     private int tipo_producto_id;
     @Column(name = "tipo_producto")
     private String tipo_producto;
+    @OneToMany(mappedBy = "tipo_producto")
+    private List<Modelo> modelos;
 
     public TipoProducto() {
     }

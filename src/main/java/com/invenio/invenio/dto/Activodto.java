@@ -1,5 +1,8 @@
 package com.invenio.invenio.dto;
 
+import com.invenio.invenio.dao.Entrada;
+import com.invenio.invenio.dao.Modelo;
+
 public class Activodto {
     private int activo_id;
     private int Modelo_modelo_id;
@@ -17,6 +20,8 @@ public class Activodto {
         this.nombre = nombre;
         this.precio_unitario = precio_unitario;
     }
+
+    //Getters and Setters
 
     public int getActivo_id() {
         return activo_id;
@@ -57,5 +62,6 @@ public class Activodto {
     public void setPrecio_unitario(double precio_unitario) {
         this.precio_unitario = precio_unitario;
     }
+
 }
 

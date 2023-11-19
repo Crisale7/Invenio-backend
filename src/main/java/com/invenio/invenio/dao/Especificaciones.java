@@ -9,8 +9,9 @@ public class Especificaciones {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "especificaciones_id")
     private int especificaciones_id;
-    @Column(name = "Producto_producto_id")
-    private int Producto_producto_id;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Producto_producto_id", insertable = false, updatable = false)
+    private Activo producto;
     @Column(name = "serie")
     private String serie;
     @Column(name = "marca")
@@ -35,9 +36,9 @@ public class Especificaciones {
     public Especificaciones() {
     }
 
-    public Especificaciones(int especificaciones_id, int Producto_producto_id, String serie, String marca, char estado, int eq, int dimension_alto, int dimension_ancho, String ram, String procesador, String memoria, String color) {
+    public Especificaciones(int especificaciones_id, Activo producto, String serie, String marca, char estado, int eq, int dimension_alto, int dimension_ancho, String ram, String procesador, String memoria, String color) {
         this.especificaciones_id = especificaciones_id;
-        this.Producto_producto_id = Producto_producto_id;
+        this.producto = producto;
         this.serie = serie;
         this.marca = marca;
         this.estado = estado;
@@ -58,12 +59,12 @@ public class Especificaciones {
         this.especificaciones_id = especificaciones_id;
     }
 
-    public int getProducto_producto_id() {
-        return Producto_producto_id;
+    public Activo getProducto() {
+        return producto;
     }
 
-    public void setProducto_producto_id(int Producto_producto_id) {
-        this.Producto_producto_id = Producto_producto_id;
+    public void setProducto(Activo producto) {
+        this.producto = producto;
     }
 
     public String getSerie() {
@@ -145,5 +146,4 @@ public class Especificaciones {
     public void setColor(String color) {
         this.color = color;
     }
-
 }

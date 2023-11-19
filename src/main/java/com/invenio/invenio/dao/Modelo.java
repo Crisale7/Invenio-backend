@@ -2,6 +2,8 @@ package com.invenio.invenio.dao;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name="Modelo")
 public class Modelo {
@@ -9,17 +11,18 @@ public class Modelo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "modelo_id")
     private int modelo_id;
-    @Column(name = "Tipo_Producto_tipo_producto_id")
-    private int Tipo_Producto_tipo_producto_id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Tipo_Producto_tipo_producto_id", insertable = false, updatable = false)
+    private TipoProducto tipo_producto;
     @Column(name = "modelo")
     private String modelo;
 
     public Modelo() {
     }
 
-    public Modelo(int modelo_id, int Tipo_Producto_tipo_producto_id, String modelo) {
+    public Modelo(int modelo_id, TipoProducto tipo_producto, String modelo) {
         this.modelo_id = modelo_id;
-        this.Tipo_Producto_tipo_producto_id = Tipo_Producto_tipo_producto_id;
+        this.tipo_producto = tipo_producto;
         this.modelo = modelo;
     }
 
@@ -31,12 +34,12 @@ public class Modelo {
         this.modelo_id = modelo_id;
     }
 
-    public int getTipo_Producto_tipo_producto_id() {
-        return Tipo_Producto_tipo_producto_id;
+    public TipoProducto getTipo_producto() {
+        return tipo_producto;
     }
 
-    public void setTipo_Producto_tipo_producto_id(int Tipo_Producto_tipo_producto_id) {
-        this.Tipo_Producto_tipo_producto_id = Tipo_Producto_tipo_producto_id;
+    public void setTipo_producto(TipoProducto tipo_producto) {
+        this.tipo_producto = tipo_producto;
     }
 
     public String getModelo() {

@@ -9,20 +9,22 @@ public class ActivoAtributo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "equipo_atributo_id")
     private int equipo_atributo_id;
-    @Column(name = "Atributos_atributos_id")
-    private int Atributos_atributos_id;
-    @Column(name = "Activo_activo_id")
-    private int Activo_activo_id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Atributos_atributos_id", insertable = false, updatable = false)
+    private Atributos atributos;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Activo_activo_id", insertable = false, updatable = false)
+    private Activo activo;
     @Column(name = "detalle")
     private String detalle;
 
     public ActivoAtributo() {
     }
 
-    public ActivoAtributo(int equipo_atributo_id, int Atributos_atributos_id, int Activo_activo_id, String detalle) {
+    public ActivoAtributo(int equipo_atributo_id, Atributos atributos, Activo activo, String detalle) {
         this.equipo_atributo_id = equipo_atributo_id;
-        this.Atributos_atributos_id = Atributos_atributos_id;
-        this.Activo_activo_id = Activo_activo_id;
+        this.atributos = atributos;
+        this.activo = activo;
         this.detalle = detalle;
     }
 
@@ -34,20 +36,20 @@ public class ActivoAtributo {
         this.equipo_atributo_id = equipo_atributo_id;
     }
 
-    public int getAtributos_atributos_id() {
-        return Atributos_atributos_id;
+    public Atributos getAtributos() {
+        return atributos;
     }
 
-    public void setAtributos_atributos_id(int Atributos_atributos_id) {
-        this.Atributos_atributos_id = Atributos_atributos_id;
+    public void setAtributos(Atributos atributos) {
+        this.atributos = atributos;
     }
 
-    public int getActivo_activo_id() {
-        return Activo_activo_id;
+    public Activo getActivo() {
+        return activo;
     }
 
-    public void setActivo_activo_id(int Activo_activo_id) {
-        this.Activo_activo_id = Activo_activo_id;
+    public void setActivo(Activo activo) {
+        this.activo = activo;
     }
 
     public String getDetalle() {
@@ -58,3 +60,4 @@ public class ActivoAtributo {
         this.detalle = detalle;
     }
 }
+
