@@ -34,6 +34,9 @@ public class Usuario {
         this.usuario = usuario;
     }
 
+    public Usuario(int usuarioUsuarioId) {
+    }
+
     public int getUsuario_id() {
         return usuario_id;
     }

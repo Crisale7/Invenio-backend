@@ -16,7 +16,10 @@ public class Roldto {
             this.Usuario_usuario_id = Usuario_usuario_id;
         }
 
-        public int getRol_id() {
+    public Roldto(int rolId, String rol) {
+    }
+
+    public int getRol_id() {
             return rol_id;
         }
 

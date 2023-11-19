@@ -25,6 +25,9 @@ public class Grupo {
         this.grupo = grupo;
     }
 
+    public Grupo(int grupoGrupoId) {
+    }
+
     public int getGrupo_id() {
         return grupo_id;
     }
