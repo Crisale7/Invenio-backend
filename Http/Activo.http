@@ -1,0 +1,1 @@
+POST http://localhost:8080/api/v1/activo/crear?nombre=Nombre&precio_unitario=100.0&Modelo_modelo_id=1&Entrada_entrada_id=1
