@@ -1,5 +1,7 @@
 package com.invenio.invenio.dto;
 
+import java.sql.Timestamp;
+
 public class Asignaciondto {
     private int asignacion_id;
     private int Activo_activo_id;
@@ -12,6 +14,9 @@ public class Asignaciondto {
         this.asignacion_id = asignacion_id;
         this.Activo_activo_id = Activo_activo_id;
         this.fecha_salida = fecha_salida;
+    }
+
+    public Asignaciondto(int asignacionId, int activoActivoId, Timestamp fechaSalida) {
     }
 
     public int getAsignacion_id() {
