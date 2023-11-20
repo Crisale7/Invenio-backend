@@ -1,0 +1,1 @@
+POST http://localhost:8080/api/v1/modelo/crear?modelo=Nombre&Tipo_Producto_tipo_producto_id=1
