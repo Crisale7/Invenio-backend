@@ -2,6 +2,7 @@ package com.invenio.invenio.dao;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -67,7 +68,7 @@ public class Atributos {
         return activo_atributos;
     }
 
-    public void setActivo_atributos(List<ActivoAtributo> activo_atributos) {
+    public void setActivo_atributos(ArrayList<ActivoAtributo> activo_atributos) {
         this.activo_atributos = activo_atributos;
     }
 }

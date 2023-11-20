@@ -2,6 +2,7 @@ package com.invenio.invenio.dao;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -11,6 +12,8 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "usuario_id")
     private int usuario_id;
+    @Column(name = "Asignacion_asignacion_id")
+    private int Asignacion_asignacion_id;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Asignacion_asignacion_id", insertable = false, updatable = false)
     private Asignacion asignacion;
@@ -26,15 +29,12 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(int usuario_id, Asignacion asignacion, String hash_contrasena, String nombre, String usuario) {
+    public Usuario(int usuario_id, int Asignacion_asignacion_id, String hash_contrasena, String nombre, String usuario) {
         this.usuario_id = usuario_id;
-        this.asignacion = asignacion;
+        this.Asignacion_asignacion_id = Asignacion_asignacion_id;
         this.hash_contrasena = hash_contrasena;
         this.nombre = nombre;
         this.usuario = usuario;
-    }
-
-    public Usuario(int usuarioUsuarioId) {
     }
 
     public int getUsuario_id() {
@@ -51,6 +51,14 @@ public class Usuario {
 
     public void setAsignacion(Asignacion asignacion) {
         this.asignacion = asignacion;
+    }
+
+    public int getAsignacion_asignacion_id() {
+        return Asignacion_asignacion_id;
+    }
+
+    public void setAsignacion_asignacion_id(int Asignacion_asignacion_id) {
+        this.Asignacion_asignacion_id = Asignacion_asignacion_id;
     }
 
     public String getHash_contrasena() {
@@ -75,5 +83,13 @@ public class Usuario {
 
     public void setUsuario(String usuario) {
         this.usuario = usuario;
+    }
+
+    public List <Rol> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(ArrayList<Rol> roles) {
+        this.roles = roles;
     }
 }

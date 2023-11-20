@@ -9,6 +9,10 @@ public class ActivoAtributo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "equipo_atributo_id")
     private int equipo_atributo_id;
+    @Column(name = "Atributos_atributos_id")
+    private int Atributos_atributos_id;
+    @Column(name = "Activo_activo_id")
+    private int Activo_activo_id;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Atributos_atributos_id", insertable = false, updatable = false)
     private Atributos atributos;
@@ -21,10 +25,10 @@ public class ActivoAtributo {
     public ActivoAtributo() {
     }
 
-    public ActivoAtributo(int equipo_atributo_id, Atributos atributos, Activo activo, String detalle) {
+    public ActivoAtributo(int equipo_atributo_id, int Atributos_atributos_id, int Activo_activo_id, String detalle) {
         this.equipo_atributo_id = equipo_atributo_id;
-        this.atributos = atributos;
-        this.activo = activo;
+        this.Atributos_atributos_id = Atributos_atributos_id;
+        this.Activo_activo_id = Activo_activo_id;
         this.detalle = detalle;
     }
 
@@ -44,12 +48,28 @@ public class ActivoAtributo {
         this.atributos = atributos;
     }
 
+    public int getAtributos_atributos_id() {
+        return Atributos_atributos_id;
+    }
+
+    public void setAtributos_atributos_id(int Atributos_atributos_id) {
+        this.Atributos_atributos_id = Atributos_atributos_id;
+    }
+
     public Activo getActivo() {
         return activo;
     }
 
     public void setActivo(Activo activo) {
         this.activo = activo;
+    }
+
+    public int getActivo_activo_id() {
+        return Activo_activo_id;
+    }
+
+    public void setActivo_activo_id(int Activo_activo_id) {
+        this.Activo_activo_id = Activo_activo_id;
     }
 
     public String getDetalle() {

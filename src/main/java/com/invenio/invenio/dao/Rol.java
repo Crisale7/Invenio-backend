@@ -9,6 +9,13 @@ public class Rol {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "rol_id")
     private int rol_id;
+
+    @Column(name = "Grupo_grupo_id")
+    private int Grupo_grupo_id;
+
+    @Column(name = "Usuario_usuario_id")
+    private int Usuario_usuario_id;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Grupo_grupo_id", insertable = false, updatable = false)
     private Grupo grupo;
@@ -21,10 +28,10 @@ public class Rol {
     public Rol() {
     }
 
-    public Rol(int rol_id, Grupo grupo, Usuario usuario, String rol) {
+    public Rol(int rol_id, int Grupo_grupo_id, int Usuario_usuario_id, String rol) {
         this.rol_id = rol_id;
-        this.grupo = grupo;
-        this.usuario = usuario;
+        this.Grupo_grupo_id = Grupo_grupo_id;
+        this.Usuario_usuario_id = Usuario_usuario_id;
         this.rol = rol;
     }
 
@@ -34,6 +41,30 @@ public class Rol {
 
     public void setRol_id(int rol_id) {
         this.rol_id = rol_id;
+    }
+
+    public int getGrupo_grupo_id() {
+        return Grupo_grupo_id;
+    }
+
+    public void setGrupo_grupo_id(int Grupo_grupo_id) {
+        this.Grupo_grupo_id = Grupo_grupo_id;
+    }
+
+    public int getUsuario_usuario_id() {
+        return Usuario_usuario_id;
+    }
+
+    public void setUsuario_usuario_id(int Usuario_usuario_id) {
+        this.Usuario_usuario_id = Usuario_usuario_id;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 
     public Grupo getGrupo() {
@@ -50,13 +81,5 @@ public class Rol {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
-    }
-
-    public String getRol() {
-        return rol;
-    }
-
-    public void setRol(String rol) {
-        this.rol = rol;
     }
 }

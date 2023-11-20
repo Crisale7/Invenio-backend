@@ -2,15 +2,15 @@ package com.invenio.invenio.dto;
 
 public class Asignaciondto {
     private int asignacion_id;
-    private int Producto_producto_id;
+    private int Activo_activo_id;
     private int fecha_salida;
 
     public Asignaciondto() {
     }
 
-    public Asignaciondto(int asignacion_id, int Producto_producto_id, int fecha_salida) {
+    public Asignaciondto(int asignacion_id, int Activo_activo_id, int fecha_salida) {
         this.asignacion_id = asignacion_id;
-        this.Producto_producto_id = Producto_producto_id;
+        this.Activo_activo_id = Activo_activo_id;
         this.fecha_salida = fecha_salida;
     }
 
@@ -22,12 +22,12 @@ public class Asignaciondto {
         this.asignacion_id = asignacion_id;
     }
 
-    public int getProducto_producto_id() {
-        return Producto_producto_id;
+    public int getActivo_activo_id() {
+        return Activo_activo_id;
     }
 
-    public void setProducto_producto_id(int Producto_producto_id) {
-        this.Producto_producto_id = Producto_producto_id;
+    public void setActivo_activo_id(int Producto_producto_id) {
+        this.Activo_activo_id = Producto_producto_id;
     }
 
     public int getFecha_salida() {

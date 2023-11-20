@@ -2,6 +2,7 @@ package com.invenio.invenio.dao;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 // Grupo
@@ -42,5 +43,13 @@ public class Grupo {
 
     public void setGrupo(String grupo) {
         this.grupo = grupo;
+    }
+
+    public List<Rol> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(ArrayList<Rol> roles) {
+        this.roles = roles;
     }
 }

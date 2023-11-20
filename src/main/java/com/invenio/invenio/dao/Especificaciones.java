@@ -9,15 +9,17 @@ public class Especificaciones {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "especificaciones_id")
     private int especificaciones_id;
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "Producto_producto_id", insertable = false, updatable = false)
-    private Activo producto;
+    @Column(name = "Activo_activo_id")
+    private int Activo_activoo_id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Activo_activo_id", insertable = false, updatable = false)
+    private Activo activo;
     @Column(name = "serie")
     private String serie;
     @Column(name = "marca")
     private String marca;
     @Column(name = "estado")
-    private char estado;
+    private String estado;
     @Column(name = "eq")
     private int eq;
     @Column(name = "dimension_alto")
@@ -36,9 +38,9 @@ public class Especificaciones {
     public Especificaciones() {
     }
 
-    public Especificaciones(int especificaciones_id, Activo producto, String serie, String marca, char estado, int eq, int dimension_alto, int dimension_ancho, String ram, String procesador, String memoria, String color) {
+    public Especificaciones(int especificaciones_id, int Activo_activoo_id, String serie, String marca, String estado, int eq, int dimension_alto, int dimension_ancho, String ram, String procesador, String memoria, String color) {
         this.especificaciones_id = especificaciones_id;
-        this.producto = producto;
+        this.Activo_activoo_id= Activo_activoo_id;
         this.serie = serie;
         this.marca = marca;
         this.estado = estado;
@@ -59,12 +61,20 @@ public class Especificaciones {
         this.especificaciones_id = especificaciones_id;
     }
 
-    public Activo getProducto() {
-        return producto;
+    public Activo getActivo() {
+        return activo;
     }
 
-    public void setProducto(Activo producto) {
-        this.producto = producto;
+    public void setActivo(Activo activo) {
+        this.activo = activo;
+    }
+
+    public int getActivo_activoo_id() {
+        return Activo_activoo_id;
+    }
+
+    public void setActivo_activoo_id(int Activo_activoo_id) {
+        this.Activo_activoo_id = Activo_activoo_id;
     }
 
     public String getSerie() {
@@ -83,11 +93,11 @@ public class Especificaciones {
         this.marca = marca;
     }
 
-    public char getEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(char estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 

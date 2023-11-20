@@ -2,6 +2,7 @@ package com.invenio.invenio.dao;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -41,5 +42,13 @@ public class TipoProducto {
 
     public void setTipo_producto(String tipo_producto) {
         this.tipo_producto = tipo_producto;
+    }
+
+    public List<Modelo> getModelos() {
+        return modelos;
+    }
+
+    public void setModelos(ArrayList<Modelo> modelos) {
+        this.modelos = modelos;
     }
 }

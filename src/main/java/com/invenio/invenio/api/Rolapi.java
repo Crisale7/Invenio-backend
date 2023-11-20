@@ -23,9 +23,9 @@ public class Rolapi {
     }
 
     @PostMapping ("/crear")
-    public int CrearRol(@RequestParam String rol) {
+    public int CrearRol(@RequestParam String rol, @RequestParam int Grupo_grupo_id, @RequestParam int Usuario_usuario_id) {
         LOG.info("Recibida solicitud POST para crear rol con nombre: {}", rol);
-        Roldto roldto = rolbl.CrearRol(rol);
+        Roldto roldto = rolbl.CrearRol(rol, Grupo_grupo_id, Usuario_usuario_id);
         return roldto.getRol_id();
     }
 }

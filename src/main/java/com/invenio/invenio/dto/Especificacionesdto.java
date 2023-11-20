@@ -2,10 +2,10 @@ package com.invenio.invenio.dto;
 
 public class Especificacionesdto {
     private int especificaciones_id;
-    private int Producto_producto_id;
+    private int Activo_activo_id;
     private String serie;
     private String marca;
-    private char estado;
+    private String estado;
     private int eq;
     private int dimension_alto;
     private int dimension_ancho;
@@ -17,9 +17,9 @@ public class Especificacionesdto {
     public Especificacionesdto() {
     }
 
-    public Especificacionesdto(int especificaciones_id, int Producto_producto_id, String serie, String marca, char estado, int eq, int dimension_alto, int dimension_ancho, String ram, String procesador, String memoria, String color) {
+    public Especificacionesdto(int especificaciones_id, int Activo_activo_id, String serie, String marca, String estado, int eq, int dimension_alto, int dimension_ancho, String ram, String procesador, String memoria, String color) {
         this.especificaciones_id = especificaciones_id;
-        this.Producto_producto_id = Producto_producto_id;
+        this.Activo_activo_id = Activo_activo_id;
         this.serie = serie;
         this.marca = marca;
         this.estado = estado;
@@ -40,12 +40,12 @@ public class Especificacionesdto {
         this.especificaciones_id = especificaciones_id;
     }
 
-    public int getProducto_producto_id() {
-        return Producto_producto_id;
+    public int getActivo_activo_id() {
+        return Activo_activo_id;
     }
 
-    public void setProducto_producto_id(int Producto_producto_id) {
-        this.Producto_producto_id = Producto_producto_id;
+    public void setActivo_activo_id(int Activo_activo_id) {
+        this.Activo_activo_id = Activo_activo_id;
     }
 
     public String getSerie() {
@@ -64,11 +64,11 @@ public class Especificacionesdto {
         this.marca = marca;
     }
 
-    public char getEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(char estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 

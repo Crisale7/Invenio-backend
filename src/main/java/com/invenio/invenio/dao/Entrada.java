@@ -3,6 +3,7 @@ package com.invenio.invenio.dao;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -46,6 +47,14 @@ public class Entrada {
 
     public void setDetalle(String detalle) {
         this.detalle = detalle;
+    }
+
+    public List<Activo> getActivos() {
+        return activos;
+    }
+
+    public void setActivos(ArrayList<Activo> activos) {
+        this.activos = activos;
     }
 
 }

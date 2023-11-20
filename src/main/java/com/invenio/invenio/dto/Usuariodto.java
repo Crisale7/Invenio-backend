@@ -18,6 +18,9 @@ public class Usuariodto {
         this.usuario = usuario;
     }
 
+    public Usuariodto(int usuarioId, String hashContrasena, String nombre, String usuario) {
+    }
+
     public int getUsuario_id() {
         return usuario_id;
     }

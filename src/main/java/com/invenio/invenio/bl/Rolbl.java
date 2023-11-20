@@ -20,11 +20,13 @@ public class Rolbl {
         this.rolrepository = rolrepository;
     }
 
-    public Roldto CrearRol(String rol){
+    public Roldto CrearRol(String rol, int Grupo_grupo_id, int Usuario_usuario_id){
         LOG.info("Creando rol con nombre: {}", rol);
         Rol rolEntity = new Rol();
         rolEntity.setRol(rol);
+        rolEntity.setGrupo_grupo_id(Grupo_grupo_id);
+        rolEntity.setUsuario_usuario_id(Usuario_usuario_id);
         rolrepository.save(rolEntity);
-        return new Roldto(rolEntity.getRol_id(), rol);
+        return new Roldto(rolEntity.getRol(), rolEntity.getGrupo_grupo_id(), rolEntity.getUsuario_usuario_id());
     }
 }
