@@ -18,7 +18,7 @@ public class Usuariodto {
         this.usuario = usuario;
     }
 
-    public Usuariodto(int usuarioId, String hashContrasena, String nombre, String usuario) {
+    public Usuariodto(String hashContrasena, String nombre, String usuario, int Asignacion_asignacion_id) {
     }
 
     public int getUsuario_id() {

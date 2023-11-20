@@ -22,10 +22,10 @@ public class Usuarioapi {
         this.usuariobl = usuariobl;
     }
 
-    @PostMapping("/crear")
-    public int CrearUsuario(@RequestParam String hash_contrasena, @RequestParam String nombre, @RequestParam String usuario) {
+    @PostMapping ("/crear")
+    public int CrearUsuario(@RequestParam String hash_contrasena, @RequestParam String nombre, @RequestParam String usuario, @RequestParam int Asignacion_asignacion_id) {
         LOG.info("Recibida solicitud POST para crear usuario con nombre: {}", nombre);
-        Usuariodto usuariodto = usuariobl.CrearUsuario(hash_contrasena, nombre, usuario);
+        Usuariodto usuariodto = usuariobl.CrearUsuario(hash_contrasena, nombre, usuario, Asignacion_asignacion_id);
         return usuariodto.getUsuario_id();
     }
 }
