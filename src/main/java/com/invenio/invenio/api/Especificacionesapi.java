@@ -5,10 +5,9 @@ import com.invenio.invenio.dto.Especificacionesdto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/especificaciones")
@@ -28,4 +27,12 @@ public class Especificacionesapi {
         Especificacionesdto especificacionesdto = especificacionesbl.CrearEspecificaciones(serie, marca, estado, eq, dimension_alto, dimension_ancho, ram, procesador, memoria, color, Activo_activoo_id);
         return especificacionesdto.getEspecificaciones_id();
     }
+
+    // En Especificacionesapi.java
+    @GetMapping("/obtener/{id}")
+    public Map<String, Object> obtenerEspecificaciones(@PathVariable int id) {
+        LOG.info("Recibida solicitud GET para obtener especificaciones con id: {}", id);
+        return especificacionesbl.obtenerEspecificaciones(id);
+    }
+
 }
