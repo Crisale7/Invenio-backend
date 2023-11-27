@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -34,14 +35,14 @@ public class Especificacionesbl {
         especificacionesEntity.setProcesador(procesador);
         especificacionesEntity.setMemoria(memoria);
         especificacionesEntity.setColor(color);
-        especificacionesEntity.setActivo_activoo_id(Activo_activoo_id);
+        especificacionesEntity.setActivo_activo_id(Activo_activoo_id);
         especificacionesrepository.save(especificacionesEntity);
         return new Especificacionesdto(especificacionesEntity.getEspecificaciones_id(), Activo_activoo_id, serie, marca, estado, eq, dimension_alto, dimension_ancho, ram, procesador, memoria, color);
     }
     public Map<String, Object> obtenerEspecificaciones(int id){
         LOG.info("Obteniendo especificaciones con id: {}", id);
         Especificaciones especificacionesEntity = especificacionesrepository.findById(id).orElse(null);
-        if (especificacionesEntity != null && especificacionesEntity.getActivo_activoo_id() == id) {
+        if (especificacionesEntity != null && especificacionesEntity.getActivo_activo_id() == id) {
             Map<String, Object> response = new HashMap<>();
             if (especificacionesEntity.getSerie() != null && !especificacionesEntity.getSerie().isEmpty()) {
                 response.put("serie", especificacionesEntity.getSerie());

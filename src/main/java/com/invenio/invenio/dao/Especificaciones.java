@@ -10,7 +10,7 @@ public class Especificaciones {
     @Column(name = "especificaciones_id")
     private int especificaciones_id;
     @Column(name = "Activo_activo_id")
-    private int Activo_activoo_id;
+    private int Activo_activo_id;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Activo_activo_id", insertable = false, updatable = false)
     private Activo activo;
@@ -38,9 +38,9 @@ public class Especificaciones {
     public Especificaciones() {
     }
 
-    public Especificaciones(int especificaciones_id, int Activo_activoo_id, String serie, String marca, String estado, int eq, int dimension_alto, int dimension_ancho, String ram, String procesador, String memoria, String color) {
+    public Especificaciones(int especificaciones_id, int Activo_activo_id, String serie, String marca, String estado, int eq, int dimension_alto, int dimension_ancho, String ram, String procesador, String memoria, String color) {
         this.especificaciones_id = especificaciones_id;
-        this.Activo_activoo_id= Activo_activoo_id;
+        this.Activo_activo_id= Activo_activo_id;
         this.serie = serie;
         this.marca = marca;
         this.estado = estado;
@@ -69,12 +69,12 @@ public class Especificaciones {
         this.activo = activo;
     }
 
-    public int getActivo_activoo_id() {
-        return Activo_activoo_id;
+    public int getActivo_activo_id() {
+        return Activo_activo_id;
     }
 
-    public void setActivo_activoo_id(int Activo_activoo_id) {
-        this.Activo_activoo_id = Activo_activoo_id;
+    public void setActivo_activo_id(int Activo_activo_id) {
+        this.Activo_activo_id = Activo_activo_id;
     }
 
     public String getSerie() {
