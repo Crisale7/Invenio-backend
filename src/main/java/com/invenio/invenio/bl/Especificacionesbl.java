@@ -3,6 +3,7 @@ package com.invenio.invenio.bl;
 import com.invenio.invenio.dao.Especificaciones;
 import com.invenio.invenio.dao.Repository.Especificacionesrepository;
 import com.invenio.invenio.dto.Especificacionesdto;
+import com.invenio.invenio.dto.ListaEspecificacionesdto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class Especificacionesbl {
         this.especificacionesrepository = especificacionesrepository;
     }
 
-    public Especificacionesdto CrearEspecificaciones(String serie, String marca, String estado, int eq, int dimension_alto, int dimension_ancho, String ram, String procesador, String memoria, String color, int Activo_activoo_id){
+    public Especificacionesdto CrearEspecificaciones(String serie, String marca, String estado, int eq, int dimension_alto, int dimension_ancho, String ram, String procesador, String memoria, String color, int Activo_activoo_id) {
         LOG.info("Creando especificaciones con serie: {}", serie);
         Especificaciones especificacionesEntity = new Especificaciones();
         especificacionesEntity.setSerie(serie);
@@ -39,7 +40,8 @@ public class Especificacionesbl {
         especificacionesrepository.save(especificacionesEntity);
         return new Especificacionesdto(especificacionesEntity.getEspecificaciones_id(), Activo_activoo_id, serie, marca, estado, eq, dimension_alto, dimension_ancho, ram, procesador, memoria, color);
     }
-//    public Map<String, Object> obtenerEspecificaciones(int id){
+
+    //    public Map<String, Object> obtenerEspecificaciones(int id){
 //        LOG.info("Obteniendo especificaciones con id: {}", id);
 //        Especificaciones especificacionesEntity = especificacionesrepository.findById(id).orElse(null);
 //        if (especificacionesEntity != null && especificacionesEntity.getActivo_activo_id() == id) {
@@ -79,27 +81,28 @@ public class Especificacionesbl {
 //            return null;
 //        }
 //    }
-public Map<String, Object> obtenerEspecificacionesPorActivoId(int activoId){
-    LOG.info("Obteniendo especificaciones con Activo_activo_id: {}", activoId);
-    List<Especificaciones> especificacionesEntities = especificacionesrepository.findByActivo_activo_id(activoId);
-    if (!especificacionesEntities.isEmpty()) {
-        Map<String, Object> response = new HashMap<>();
-        for (Especificaciones especificacionesEntity : especificacionesEntities) {
-            response.put("serie", especificacionesEntity.getSerie());
-            response.put("marca", especificacionesEntity.getMarca());
-            response.put("estado", especificacionesEntity.getEstado());
-            response.put("eq", especificacionesEntity.getEq());
-            response.put("dimension_alto", especificacionesEntity.getDimension_alto());
-            response.put("dimension_ancho", especificacionesEntity.getDimension_ancho());
-            response.put("ram", especificacionesEntity.getRam());
-            response.put("procesador", especificacionesEntity.getProcesador());
-            response.put("memoria", especificacionesEntity.getMemoria());
-            response.put("color", especificacionesEntity.getColor());
+    public ListaEspecificacionesdto obtenerEspecificacionesPorActivoId(int activoId) {
+        LOG.info("Obteniendo especificaciones con Activo_activo_id: {}", activoId);
+        List<Especificaciones> especificacionesEntities = especificacionesrepository.findByActivo_activo_id(activoId);
+        if (!especificacionesEntities.isEmpty()) {
+            Especificaciones especificacionesEntity = especificacionesEntities.get(0);
+            ListaEspecificacionesdto listaEspecificacionesdto = new ListaEspecificacionesdto(
+                    especificacionesEntity.getSerie() != null ? especificacionesEntity.getSerie() : "",
+                    especificacionesEntity.getMarca() != null ? especificacionesEntity.getMarca() : "",
+                    especificacionesEntity.getEstado() != null ? especificacionesEntity.getEstado() : "",
+                    especificacionesEntity.getEq() != 0 ? especificacionesEntity.getEq() : null,
+                    especificacionesEntity.getDimension_alto() != 0 ? especificacionesEntity.getDimension_alto() : null,
+                    especificacionesEntity.getDimension_ancho() != 0 ? especificacionesEntity.getDimension_ancho() : null,
+                    especificacionesEntity.getRam() != null ? especificacionesEntity.getRam() : "",
+                    especificacionesEntity.getProcesador() != null ? especificacionesEntity.getProcesador() : "",
+                    especificacionesEntity.getMemoria() != null ? especificacionesEntity.getMemoria() : "",
+                    especificacionesEntity.getColor() != null ? especificacionesEntity.getColor() : ""
+            );
+            return listaEspecificacionesdto;
+        } else {
+            return null;
         }
-        return response;
-    } else {
-        return null;
     }
-}
+
 
 }

@@ -1,8 +1,6 @@
 package com.invenio.invenio.dto;
 
-public class Especificacionesdto {
-    private Integer especificaciones_id;
-    private Integer Activo_activo_id;
+public class ListaEspecificacionesdto {
     private String serie;
     private String marca;
     private String estado;
@@ -14,12 +12,10 @@ public class Especificacionesdto {
     private String memoria;
     private String color;
 
-    public Especificacionesdto() {
+    public ListaEspecificacionesdto() {
     }
 
-    public Especificacionesdto(Integer especificaciones_id, Integer Activo_activo_id, String serie, String marca, String estado, Integer eq, Integer dimension_alto, Integer dimension_ancho, String ram, String procesador, String memoria, String color) {
-        this.especificaciones_id = especificaciones_id;
-        this.Activo_activo_id = Activo_activo_id;
+    public ListaEspecificacionesdto(String serie, String marca, String estado, Integer eq, Integer dimension_alto, Integer dimension_ancho, String ram, String procesador, String memoria, String color) {
         this.serie = serie;
         this.marca = marca;
         this.estado = estado;
@@ -30,22 +26,6 @@ public class Especificacionesdto {
         this.procesador = procesador;
         this.memoria = memoria;
         this.color = color;
-    }
-
-    public int getEspecificaciones_id() {
-        return especificaciones_id;
-    }
-
-    public void setEspecificaciones_id(Integer especificaciones_id) {
-        this.especificaciones_id = especificaciones_id;
-    }
-
-    public Integer getActivo_activo_id() {
-        return Activo_activo_id;
-    }
-
-    public void setActivo_activo_id(Integer Activo_activo_id) {
-        this.Activo_activo_id = Activo_activo_id;
     }
 
     public String getSerie() {
@@ -127,4 +107,5 @@ public class Especificacionesdto {
     public void setColor(String color) {
         this.color = color;
     }
+
 }

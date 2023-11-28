@@ -2,6 +2,7 @@ package com.invenio.invenio.api;
 
 import com.invenio.invenio.bl.Especificacionesbl;
 import com.invenio.invenio.dto.Especificacionesdto;
+import com.invenio.invenio.dto.ListaEspecificacionesdto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +31,8 @@ public class Especificacionesapi {
 
     // En Especificacionesapi.java
     @GetMapping("/obtenerPorActivoId/{activoId}")
-    public Map<String, Object> obtenerEspecificacionesPorActivoId(@PathVariable int activoId) {
+    public ListaEspecificacionesdto obtenerEspecificacionesPorActivoId(@PathVariable int activoId) {
         LOG.info("Recibida solicitud GET para obtener especificaciones con Activo_activo_id: {}", activoId);
         return especificacionesbl.obtenerEspecificacionesPorActivoId(activoId);
     }
-
 }

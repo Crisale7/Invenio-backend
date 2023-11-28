@@ -10,7 +10,11 @@ import java.util.List;
 
 @Repository
 public interface Especificacionesrepository extends JpaRepository<Especificaciones, Integer> {
-    @Query(value = "SELECT e FROM Especificaciones e WHERE e.Activo_activo_id = :activoId", nativeQuery = true)
+    @Query(value =
+            """
+                    SELECT e FROM Especificaciones e
+                    WHERE e.Activo_activo_id = :activoId
+                    """)
     List<Especificaciones> findByActivo_activo_id(@Param("activoId") int activoId);
 }
 
