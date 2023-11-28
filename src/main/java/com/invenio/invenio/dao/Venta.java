@@ -12,7 +12,9 @@ public class Venta {
     @Column(name = "venta_id") private int venta_id;
     @Column(name = "Activo_activo_id") private int Activo_activo_id;
 
-    @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "Activo_activo_id", insertable = false, updatable = false) private Activo activo;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Activo_activo_id", insertable = false, updatable = false)
+    private Activo activo;
     @Column(name = "fecha_venta") private Timestamp fecha_venta;
     @Column(name = "precio_total") private double precio_total;
 

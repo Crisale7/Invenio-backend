@@ -39,44 +39,67 @@ public class Especificacionesbl {
         especificacionesrepository.save(especificacionesEntity);
         return new Especificacionesdto(especificacionesEntity.getEspecificaciones_id(), Activo_activoo_id, serie, marca, estado, eq, dimension_alto, dimension_ancho, ram, procesador, memoria, color);
     }
-    public Map<String, Object> obtenerEspecificaciones(int id){
-        LOG.info("Obteniendo especificaciones con id: {}", id);
-        Especificaciones especificacionesEntity = especificacionesrepository.findById(id).orElse(null);
-        if (especificacionesEntity != null && especificacionesEntity.getActivo_activo_id() == id) {
-            Map<String, Object> response = new HashMap<>();
-            if (especificacionesEntity.getSerie() != null && !especificacionesEntity.getSerie().isEmpty()) {
-                response.put("serie", especificacionesEntity.getSerie());
-            }
-            if (especificacionesEntity.getMarca() != null && !especificacionesEntity.getMarca().isEmpty()) {
-                response.put("marca", especificacionesEntity.getMarca());
-            }
-            if (especificacionesEntity.getEstado() != null && !especificacionesEntity.getEstado().isEmpty()) {
-                response.put("estado", especificacionesEntity.getEstado());
-            }
-            if (especificacionesEntity.getEq() != 0) {
-                response.put("eq", especificacionesEntity.getEq());
-            }
-            if (especificacionesEntity.getDimension_alto() != 0) {
-                response.put("dimension_alto", especificacionesEntity.getDimension_alto());
-            }
-            if (especificacionesEntity.getDimension_ancho() != 0) {
-                response.put("dimension_ancho", especificacionesEntity.getDimension_ancho());
-            }
-            if (especificacionesEntity.getRam() != null && !especificacionesEntity.getRam().isEmpty()) {
-                response.put("ram", especificacionesEntity.getRam());
-            }
-            if (especificacionesEntity.getProcesador() != null && !especificacionesEntity.getProcesador().isEmpty()) {
-                response.put("procesador", especificacionesEntity.getProcesador());
-            }
-            if (especificacionesEntity.getMemoria() != null && !especificacionesEntity.getMemoria().isEmpty()) {
-                response.put("memoria", especificacionesEntity.getMemoria());
-            }
-            if (especificacionesEntity.getColor() != null && !especificacionesEntity.getColor().isEmpty()) {
-                response.put("color", especificacionesEntity.getColor());
-            }
-            return response;
-        } else {
-            return null;
+//    public Map<String, Object> obtenerEspecificaciones(int id){
+//        LOG.info("Obteniendo especificaciones con id: {}", id);
+//        Especificaciones especificacionesEntity = especificacionesrepository.findById(id).orElse(null);
+//        if (especificacionesEntity != null && especificacionesEntity.getActivo_activo_id() == id) {
+//            Map<String, Object> response = new HashMap<>();
+//            if (especificacionesEntity.getSerie() != null && !especificacionesEntity.getSerie().isEmpty()) {
+//                response.put("serie", especificacionesEntity.getSerie());
+//            }
+//            if (especificacionesEntity.getMarca() != null && !especificacionesEntity.getMarca().isEmpty()) {
+//                response.put("marca", especificacionesEntity.getMarca());
+//            }
+//            if (especificacionesEntity.getEstado() != null && !especificacionesEntity.getEstado().isEmpty()) {
+//                response.put("estado", especificacionesEntity.getEstado());
+//            }
+//            if (especificacionesEntity.getEq() != 0) {
+//                response.put("eq", especificacionesEntity.getEq());
+//            }
+//            if (especificacionesEntity.getDimension_alto() != 0) {
+//                response.put("dimension_alto", especificacionesEntity.getDimension_alto());
+//            }
+//            if (especificacionesEntity.getDimension_ancho() != 0) {
+//                response.put("dimension_ancho", especificacionesEntity.getDimension_ancho());
+//            }
+//            if (especificacionesEntity.getRam() != null && !especificacionesEntity.getRam().isEmpty()) {
+//                response.put("ram", especificacionesEntity.getRam());
+//            }
+//            if (especificacionesEntity.getProcesador() != null && !especificacionesEntity.getProcesador().isEmpty()) {
+//                response.put("procesador", especificacionesEntity.getProcesador());
+//            }
+//            if (especificacionesEntity.getMemoria() != null && !especificacionesEntity.getMemoria().isEmpty()) {
+//                response.put("memoria", especificacionesEntity.getMemoria());
+//            }
+//            if (especificacionesEntity.getColor() != null && !especificacionesEntity.getColor().isEmpty()) {
+//                response.put("color", especificacionesEntity.getColor());
+//            }
+//            return response;
+//        } else {
+//            return null;
+//        }
+//    }
+public Map<String, Object> obtenerEspecificacionesPorActivoId(int activoId){
+    LOG.info("Obteniendo especificaciones con Activo_activo_id: {}", activoId);
+    List<Especificaciones> especificacionesEntities = especificacionesrepository.findByActivo_activo_id(activoId);
+    if (!especificacionesEntities.isEmpty()) {
+        Map<String, Object> response = new HashMap<>();
+        for (Especificaciones especificacionesEntity : especificacionesEntities) {
+            response.put("serie", especificacionesEntity.getSerie());
+            response.put("marca", especificacionesEntity.getMarca());
+            response.put("estado", especificacionesEntity.getEstado());
+            response.put("eq", especificacionesEntity.getEq());
+            response.put("dimension_alto", especificacionesEntity.getDimension_alto());
+            response.put("dimension_ancho", especificacionesEntity.getDimension_ancho());
+            response.put("ram", especificacionesEntity.getRam());
+            response.put("procesador", especificacionesEntity.getProcesador());
+            response.put("memoria", especificacionesEntity.getMemoria());
+            response.put("color", especificacionesEntity.getColor());
         }
+        return response;
+    } else {
+        return null;
     }
+}
+
 }
