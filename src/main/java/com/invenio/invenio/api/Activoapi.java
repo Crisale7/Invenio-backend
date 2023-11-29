@@ -5,10 +5,7 @@ import com.invenio.invenio.dto.Activodto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/activo")
@@ -27,5 +24,11 @@ public class Activoapi {
         LOG.info("Recibida solicitud POST para crear activo con nombre: {}", nombre);
         Activodto activodto = activobl.CrearActivo(nombre, precio_unitario, Modelo_modelo_id, Entrada_entrada_id);
         return activodto.getActivo_id();
+    }
+
+    @GetMapping("/obtenerIdPorNombre/{nombre}")
+    public int obtenerIdPorNombre(@PathVariable String nombre) {
+        LOG.info("Recibida solicitud GET para obtener ID de activo con nombre: {}", nombre);
+        return activobl.obtenerIdPorNombre(nombre);
     }
 }

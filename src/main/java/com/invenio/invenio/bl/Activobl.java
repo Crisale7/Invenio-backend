@@ -28,4 +28,14 @@ public class Activobl {
         activorepository.save(activoEntity);
         return new Activodto(activoEntity.getActivo_id(), Modelo_modelo_id, Entrada_entrada_id, nombre, precio_unitario);
     }
+
+    public int obtenerIdPorNombre(String nombre){
+        LOG.info("Obteniendo ID de activo con nombre: {}", nombre);
+        Activo activoEntity = activorepository.findByNombre(nombre);
+        if (activoEntity != null) {
+            return activoEntity.getActivo_id();
+        } else {
+            return -1; // O cualquier otro valor que indique que el activo no se encontró
+        }
+    }
 }

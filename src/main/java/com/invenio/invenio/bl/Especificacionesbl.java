@@ -23,86 +23,45 @@ public class Especificacionesbl {
         this.especificacionesrepository = especificacionesrepository;
     }
 
-    public Especificacionesdto CrearEspecificaciones(String serie, String marca, String estado, int eq, int dimension_alto, int dimension_ancho, String ram, String procesador, String memoria, String color, int Activo_activoo_id) {
+    public Especificacionesdto CrearEspecificaciones(String serie, String marca, String estado, Integer eq, Integer dimension_alto, Integer dimension_ancho, String ram, String procesador, String memoria, String color, Integer Activo_activoo_id) {
         LOG.info("Creando especificaciones con serie: {}", serie);
         Especificaciones especificacionesEntity = new Especificaciones();
-        especificacionesEntity.setSerie(serie);
-        especificacionesEntity.setMarca(marca);
-        especificacionesEntity.setEstado(estado);
-        especificacionesEntity.setEq(eq);
-        especificacionesEntity.setDimension_alto(dimension_alto);
-        especificacionesEntity.setDimension_ancho(dimension_ancho);
-        especificacionesEntity.setRam(ram);
-        especificacionesEntity.setProcesador(procesador);
-        especificacionesEntity.setMemoria(memoria);
-        especificacionesEntity.setColor(color);
-        especificacionesEntity.setActivo_activo_id(Activo_activoo_id);
+        especificacionesEntity.setSerie(serie != null && !serie.isEmpty() ? serie : null);
+        especificacionesEntity.setMarca(marca != null && !marca.isEmpty() ? marca : null);
+        especificacionesEntity.setEstado(estado != null && !estado.isEmpty() ? estado : null);
+        especificacionesEntity.setEq(eq != null ? eq : 0);
+        especificacionesEntity.setDimension_alto(dimension_alto != null ? dimension_alto : 0);
+        especificacionesEntity.setDimension_ancho(dimension_ancho != null ? dimension_ancho : 0);
+        especificacionesEntity.setRam(ram != null && !ram.isEmpty() ? ram : null);
+        especificacionesEntity.setProcesador(procesador != null && !procesador.isEmpty() ? procesador : null);
+        especificacionesEntity.setMemoria(memoria != null && !memoria.isEmpty() ? memoria : null);
+        especificacionesEntity.setColor(color != null && !color.isEmpty() ? color : null);
+        especificacionesEntity.setActivo_activo_id(Activo_activoo_id != null ? Activo_activoo_id : 0);
         especificacionesrepository.save(especificacionesEntity);
         return new Especificacionesdto(especificacionesEntity.getEspecificaciones_id(), Activo_activoo_id, serie, marca, estado, eq, dimension_alto, dimension_ancho, ram, procesador, memoria, color);
     }
 
-    //    public Map<String, Object> obtenerEspecificaciones(int id){
-//        LOG.info("Obteniendo especificaciones con id: {}", id);
-//        Especificaciones especificacionesEntity = especificacionesrepository.findById(id).orElse(null);
-//        if (especificacionesEntity != null && especificacionesEntity.getActivo_activo_id() == id) {
-//            Map<String, Object> response = new HashMap<>();
-//            if (especificacionesEntity.getSerie() != null && !especificacionesEntity.getSerie().isEmpty()) {
-//                response.put("serie", especificacionesEntity.getSerie());
-//            }
-//            if (especificacionesEntity.getMarca() != null && !especificacionesEntity.getMarca().isEmpty()) {
-//                response.put("marca", especificacionesEntity.getMarca());
-//            }
-//            if (especificacionesEntity.getEstado() != null && !especificacionesEntity.getEstado().isEmpty()) {
-//                response.put("estado", especificacionesEntity.getEstado());
-//            }
-//            if (especificacionesEntity.getEq() != 0) {
-//                response.put("eq", especificacionesEntity.getEq());
-//            }
-//            if (especificacionesEntity.getDimension_alto() != 0) {
-//                response.put("dimension_alto", especificacionesEntity.getDimension_alto());
-//            }
-//            if (especificacionesEntity.getDimension_ancho() != 0) {
-//                response.put("dimension_ancho", especificacionesEntity.getDimension_ancho());
-//            }
-//            if (especificacionesEntity.getRam() != null && !especificacionesEntity.getRam().isEmpty()) {
-//                response.put("ram", especificacionesEntity.getRam());
-//            }
-//            if (especificacionesEntity.getProcesador() != null && !especificacionesEntity.getProcesador().isEmpty()) {
-//                response.put("procesador", especificacionesEntity.getProcesador());
-//            }
-//            if (especificacionesEntity.getMemoria() != null && !especificacionesEntity.getMemoria().isEmpty()) {
-//                response.put("memoria", especificacionesEntity.getMemoria());
-//            }
-//            if (especificacionesEntity.getColor() != null && !especificacionesEntity.getColor().isEmpty()) {
-//                response.put("color", especificacionesEntity.getColor());
-//            }
-//            return response;
-//        } else {
-//            return null;
-//        }
-//    }
+
     public ListaEspecificacionesdto obtenerEspecificacionesPorActivoId(int activoId) {
         LOG.info("Obteniendo especificaciones con Activo_activo_id: {}", activoId);
         List<Especificaciones> especificacionesEntities = especificacionesrepository.findByActivo_activo_id(activoId);
         if (!especificacionesEntities.isEmpty()) {
             Especificaciones especificacionesEntity = especificacionesEntities.get(0);
             ListaEspecificacionesdto listaEspecificacionesdto = new ListaEspecificacionesdto(
-                    especificacionesEntity.getSerie() != null ? especificacionesEntity.getSerie() : "",
-                    especificacionesEntity.getMarca() != null ? especificacionesEntity.getMarca() : "",
-                    especificacionesEntity.getEstado() != null ? especificacionesEntity.getEstado() : "",
-                    especificacionesEntity.getEq() != 0 ? especificacionesEntity.getEq() : null,
-                    especificacionesEntity.getDimension_alto() != 0 ? especificacionesEntity.getDimension_alto() : null,
-                    especificacionesEntity.getDimension_ancho() != 0 ? especificacionesEntity.getDimension_ancho() : null,
-                    especificacionesEntity.getRam() != null ? especificacionesEntity.getRam() : "",
-                    especificacionesEntity.getProcesador() != null ? especificacionesEntity.getProcesador() : "",
-                    especificacionesEntity.getMemoria() != null ? especificacionesEntity.getMemoria() : "",
-                    especificacionesEntity.getColor() != null ? especificacionesEntity.getColor() : ""
+                    especificacionesEntity.getSerie() != null && !especificacionesEntity.getSerie().isEmpty() ? especificacionesEntity.getSerie() : "No posee",
+                    especificacionesEntity.getMarca() != null && !especificacionesEntity.getMarca().isEmpty() ? especificacionesEntity.getMarca() : "No posee",
+                    especificacionesEntity.getEstado() != null && !especificacionesEntity.getEstado().isEmpty() ? especificacionesEntity.getEstado() : "No posee",
+                    especificacionesEntity.getEq() != 0 ? especificacionesEntity.getEq() : 0,
+                    especificacionesEntity.getDimension_alto() != 0 ? especificacionesEntity.getDimension_alto() : 0,
+                    especificacionesEntity.getDimension_ancho() != 0 ? especificacionesEntity.getDimension_ancho() : 0,
+                    especificacionesEntity.getRam() != null && !especificacionesEntity.getRam().isEmpty() ? especificacionesEntity.getRam() : "No posee",
+                    especificacionesEntity.getProcesador() != null && !especificacionesEntity.getProcesador().isEmpty() ? especificacionesEntity.getProcesador() : "No posee",
+                    especificacionesEntity.getMemoria() != null && !especificacionesEntity.getMemoria().isEmpty() ? especificacionesEntity.getMemoria() : "No posee",
+                    especificacionesEntity.getColor() != null && !especificacionesEntity.getColor().isEmpty() ? especificacionesEntity.getColor() : "No posee"
             );
             return listaEspecificacionesdto;
         } else {
             return null;
         }
     }
-
-
 }
