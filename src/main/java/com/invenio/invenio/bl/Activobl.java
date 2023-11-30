@@ -8,6 +8,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class Activobl {
     private final Activorepository activorepository;
@@ -37,5 +40,11 @@ public class Activobl {
         } else {
             return -1; // O cualquier otro valor que indique que el activo no se encontró
         }
+    }
+
+    public List<Integer> GetActivoIdsByModeloId(int modeloId){
+        LOG.info("Buscando activos con Modelo_modelo_id: {}", modeloId);
+        List<Activo> activos = activorepository.findByModeloId(modeloId);
+        return activos.stream().map(Activo::getActivo_id).collect(Collectors.toList());
     }
 }

@@ -26,4 +26,9 @@ public class Modelobl {
         modelorepository.save(modeloEntity);
         return new Modelodto(modeloEntity.getModelo_id(), Tipo_Producto_tipo_producto_id, modelo);
     }
+    public int GetModeloId(String modelo){
+        LOG.info("Buscando modelo con nombre: {}", modelo);
+        Modelo modeloEntity = modelorepository.findByModelo(modelo);
+        return modeloEntity.getModelo_id();
+    }
 }

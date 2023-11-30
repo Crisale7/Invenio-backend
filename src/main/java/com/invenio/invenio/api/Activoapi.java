@@ -7,6 +7,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/activo")
 public class Activoapi {
@@ -30,5 +32,11 @@ public class Activoapi {
     public int obtenerIdPorNombre(@PathVariable String nombre) {
         LOG.info("Recibida solicitud GET para obtener ID de activo con nombre: {}", nombre);
         return activobl.obtenerIdPorNombre(nombre);
+    }
+
+    @GetMapping("/idsByModeloId/{modeloId}")
+    public List<Integer> GetActivoIdsByModeloId(@PathVariable int modeloId) {
+        LOG.info("Recibida solicitud GET para buscar activos con Modelo_modelo_id: {}", modeloId);
+        return activobl.GetActivoIdsByModeloId(modeloId);
     }
 }

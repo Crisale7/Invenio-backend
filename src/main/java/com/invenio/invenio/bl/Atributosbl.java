@@ -27,4 +27,10 @@ public class Atributosbl {
         atributosrepository.save(atributosEntity);
         return new Atributosdto(atributosEntity.getAtributos_id(), nombre, tipo, obligatorio);
     }
+
+    public int GetAtributosIdByNombre(String nombre){
+        LOG.info("Buscando atributo con nombre: {}", nombre);
+        Atributos atributos = atributosrepository.findByNombre(nombre);
+        return atributos.getAtributos_id();
+    }
 }
