@@ -64,4 +64,26 @@ public class Especificacionesbl {
             return null;
         }
     }
+
+    public ListaEspecificacionesdto obtenerEspecificacionesPorSerie(String serie){
+        LOG.info("Obteniendo especificaciones con serie: {}", serie);
+        Especificaciones especificacionesEntity = especificacionesrepository.findBySerie(serie);
+        if (especificacionesEntity != null) {
+            ListaEspecificacionesdto listaEspecificacionesdto = new ListaEspecificacionesdto(
+                    especificacionesEntity.getSerie(),
+                    especificacionesEntity.getMarca(),
+                    especificacionesEntity.getEstado(),
+                    especificacionesEntity.getEq(),
+                    especificacionesEntity.getDimension_alto(),
+                    especificacionesEntity.getDimension_ancho(),
+                    especificacionesEntity.getRam(),
+                    especificacionesEntity.getProcesador(),
+                    especificacionesEntity.getMemoria(),
+                    especificacionesEntity.getColor()
+            );
+            return listaEspecificacionesdto;
+        } else {
+            return null;
+        }
+    }
 }

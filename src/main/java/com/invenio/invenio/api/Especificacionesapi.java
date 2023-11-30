@@ -35,4 +35,10 @@ public class Especificacionesapi {
         LOG.info("Recibida solicitud GET para obtener especificaciones con Activo_activo_id: {}", activoId);
         return especificacionesbl.obtenerEspecificacionesPorActivoId(activoId);
     }
+
+    @GetMapping("/obtenerPorSerie/{serie}")
+    public ListaEspecificacionesdto obtenerEspecificacionesPorSerie(@PathVariable String serie) {
+        LOG.info("Recibida solicitud GET para obtener especificaciones con serie: {}", serie);
+        return especificacionesbl.obtenerEspecificacionesPorSerie(serie);
+    }
 }

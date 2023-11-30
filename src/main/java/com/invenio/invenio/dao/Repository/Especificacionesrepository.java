@@ -16,5 +16,9 @@ public interface Especificacionesrepository extends JpaRepository<Especificacion
                     WHERE e.Activo_activo_id = :activoId
                     """)
     List<Especificaciones> findByActivo_activo_id(@Param("activoId") int activoId);
+
+    @Query(value = "SELECT e FROM Especificaciones e WHERE e.serie = :serie")
+    Especificaciones findBySerie(@Param("serie") String serie);
 }
+
 
