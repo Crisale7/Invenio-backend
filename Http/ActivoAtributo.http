@@ -1,1 +1,3 @@
 POST http://localhost:8080/api/v1/activoAtributo/crear?Atributos_atributos_id=1&Activo_activo_id=1&detalle=Detalle
+###
+GET http://localhost:8080/api/v1/activoAtributo/activoIdsByAtributosId/1

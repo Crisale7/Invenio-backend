@@ -8,6 +8,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class ActivoAtributobl {
     private final ActivoAtributorepository activoAtributorepository;
@@ -26,5 +29,11 @@ public class ActivoAtributobl {
         activoAtributoEntity.setDetalle(detalle);
         activoAtributorepository.save(activoAtributoEntity);
         return new ActivoAtributodto(activoAtributoEntity.getEquipo_atributo_id(), Atributos_atributos_id, Activo_activo_id, detalle);
+    }
+
+    public List<Integer> GetActivoIdsByAtributosId(int atributosId){
+        LOG.info("Buscando ActivoAtributo con Atributos_atributos_id: {}", atributosId);
+        List<ActivoAtributo> activoAtributos = activoAtributorepository.findByAtributosId(atributosId);
+        return activoAtributos.stream().map(ActivoAtributo::getActivo_activo_id).collect(Collectors.toList());
     }
 }
