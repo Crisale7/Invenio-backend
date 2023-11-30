@@ -47,4 +47,10 @@ public class Activobl {
         List<Activo> activos = activorepository.findByModeloId(modeloId);
         return activos.stream().map(Activo::getActivo_id).collect(Collectors.toList());
     }
+
+    public List<Integer> GetActivoIdsByEntradaId(int entradaId){
+        LOG.info("Buscando Activo con Entrada_entrada_id: {}", entradaId);
+        List<Activo> activos = activorepository.findByEntradaId(entradaId);
+        return activos.stream().map(Activo::getActivo_id).collect(Collectors.toList());
+    }
 }

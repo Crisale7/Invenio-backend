@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class Asignacionbl {
@@ -27,5 +29,11 @@ public class Asignacionbl {
         asignacionEntity.setFecha_salida(fecha_salida);
         asignacionrepository.save(asignacionEntity);
         return new Asignaciondto(asignacionEntity.getAsignacion_id(), Activo_activo_id, fecha_salida);
+    }
+
+    public List<Integer> GetActivoIdsByFechaSalida(Timestamp fechaSalida){
+        LOG.info("Buscando Asignacion con fecha_salida: {}", fechaSalida);
+        List<Asignacion> asignaciones = asignacionrepository.findByFechaSalida(fechaSalida);
+        return asignaciones.stream().map(Asignacion::getActivo_activo_id).collect(Collectors.toList());
     }
 }

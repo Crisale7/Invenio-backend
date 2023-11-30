@@ -15,5 +15,8 @@ public interface Activorepository extends JpaRepository<Activo, Integer> {
 
     @Query("SELECT a FROM Activo a WHERE a.Modelo_modelo_id = :modeloId")
     List<Activo> findByModeloId(@Param("modeloId") int modeloId);
+
+    @Query("SELECT a FROM Activo a WHERE a.Entrada_entrada_id = :entradaId")
+    List<Activo> findByEntradaId(@Param("entradaId") int entradaId);
 }
 

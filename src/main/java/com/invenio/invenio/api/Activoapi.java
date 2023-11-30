@@ -39,4 +39,10 @@ public class Activoapi {
         LOG.info("Recibida solicitud GET para buscar activos con Modelo_modelo_id: {}", modeloId);
         return activobl.GetActivoIdsByModeloId(modeloId);
     }
+
+    @GetMapping("/activoIdsByEntradaId/{entradaId}")
+    public List<Integer> GetActivoIdsByEntradaId(@PathVariable int entradaId) {
+        LOG.info("Recibida solicitud GET para buscar Activo con Entrada_entrada_id: {}", entradaId);
+        return activobl.GetActivoIdsByEntradaId(entradaId);
+    }
 }
