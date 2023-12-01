@@ -8,8 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
-
 @RestController
 @RequestMapping("/api/v1/especificaciones")
 public class Especificacionesapi {
@@ -41,4 +39,30 @@ public class Especificacionesapi {
         LOG.info("Recibida solicitud GET para obtener especificaciones con serie: {}", serie);
         return especificacionesbl.obtenerEspecificacionesPorSerie(serie);
     }
+
+    @PutMapping("/actualizar/{id}")
+    public Especificacionesdto ActualizarEspecificaciones(@PathVariable Integer id, @RequestParam(required = false) String serie, @RequestParam(required = false) String marca, @RequestParam(required = false) String estado, @RequestParam(required = false) Integer eq, @RequestParam(required = false) Integer dimension_alto, @RequestParam(required = false) Integer dimension_ancho, @RequestParam(required = false) String ram, @RequestParam(required = false) String procesador, @RequestParam(required = false) String memoria, @RequestParam(required = false) String color, @RequestParam(required = false) Integer Activo_activo_id) {
+        LOG.info("Recibida solicitud PUT para actualizar especificaciones con id: {}", id);
+        return especificacionesbl.ActualizarEspecificaciones(id, serie, marca, estado, eq, dimension_alto, dimension_ancho, ram, procesador, memoria, color, Activo_activo_id);
+    }
+
+    @GetMapping("/idBySerie/{serie}")
+    public Integer GetEspecificacionesIdBySerie(@PathVariable String serie) {
+        LOG.info("Recibida solicitud GET para buscar Especificaciones con serie: {}", serie);
+        return especificacionesbl.GetEspecificacionesIdBySerie(serie);
+    }
+
+    @GetMapping("/byId/{id}")
+    public ListaEspecificacionesdto GetEspecificacionesById(@PathVariable Integer id) {
+        LOG.info("Recibida solicitud GET para buscar Especificaciones con id: {}", id);
+        return especificacionesbl.GetEspecificacionesById(id);
+    }
+
+    @DeleteMapping("/eliminar/{id}")
+    public void EliminarEspecificaciones(@PathVariable Integer id) {
+        LOG.info("Recibida solicitud DELETE para eliminar Especificaciones con id: {}", id);
+        especificacionesbl.EliminarEspecificaciones(id);
+    }
+
+
 }
