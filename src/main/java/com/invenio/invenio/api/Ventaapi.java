@@ -1,19 +1,18 @@
 package com.invenio.invenio.api;
 
 import com.invenio.invenio.bl.Ventabl;
+import com.invenio.invenio.dto.ListaVentasdto;
 import com.invenio.invenio.dto.Ventadto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/venta")
@@ -36,4 +35,11 @@ public class Ventaapi {
         Ventadto ventadto = ventabl.CrearVenta(precio_total, Activo_activo_id, timestamp);
         return ventadto.getVenta_id();
     }
+
+    @GetMapping("/all")
+    public List<ListaVentasdto> GetAllVentas() {
+        LOG.info("Recibida solicitud GET para obtener todas las ventas");
+        return ventabl.GetAllVentas();
+    }
+
 }
