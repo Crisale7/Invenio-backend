@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/especificaciones")
 public class Especificacionesapi {
@@ -29,7 +31,7 @@ public class Especificacionesapi {
 
     // En Especificacionesapi.java
     @GetMapping("/obtenerPorActivoId/{activoId}")
-    public ListaEspecificacionesdto obtenerEspecificacionesPorActivoId(@PathVariable int activoId) {
+    public List<ListaEspecificacionesdto> obtenerEspecificacionesPorActivoId(@PathVariable int activoId) {
         LOG.info("Recibida solicitud GET para obtener especificaciones con Activo_activo_id: {}", activoId);
         return especificacionesbl.obtenerEspecificacionesPorActivoId(activoId);
     }

@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,11 +44,12 @@ public class Especificacionesbl {
 
 
 
-    public ListaEspecificacionesdto obtenerEspecificacionesPorActivoId(int activoId) {
+    public List<ListaEspecificacionesdto> obtenerEspecificacionesPorActivoId(int activoId) {
         LOG.info("Obteniendo especificaciones con Activo_activo_id: {}", activoId);
         List<Especificaciones> especificacionesEntities = especificacionesrepository.findByActivo_activo_id(activoId);
-        if (!especificacionesEntities.isEmpty()) {
-            Especificaciones especificacionesEntity = especificacionesEntities.get(0);
+        List<ListaEspecificacionesdto> listaEspecificaciones = new ArrayList<>();
+
+        for (Especificaciones especificacionesEntity : especificacionesEntities) {
             ListaEspecificacionesdto listaEspecificacionesdto = new ListaEspecificacionesdto(
                     especificacionesEntity.getSerie() != null && !especificacionesEntity.getSerie().isEmpty() ? especificacionesEntity.getSerie() : "No posee",
                     especificacionesEntity.getMarca() != null && !especificacionesEntity.getMarca().isEmpty() ? especificacionesEntity.getMarca() : "No posee",
@@ -60,11 +62,12 @@ public class Especificacionesbl {
                     especificacionesEntity.getMemoria() != null && !especificacionesEntity.getMemoria().isEmpty() ? especificacionesEntity.getMemoria() : "No posee",
                     especificacionesEntity.getColor() != null && !especificacionesEntity.getColor().isEmpty() ? especificacionesEntity.getColor() : "No posee"
             );
-            return listaEspecificacionesdto;
-        } else {
-            return null;
+            listaEspecificaciones.add(listaEspecificacionesdto);
         }
+
+        return listaEspecificaciones.isEmpty() ? null : listaEspecificaciones;
     }
+
 
     public ListaEspecificacionesdto obtenerEspecificacionesPorSerie(String serie){
         LOG.info("Obteniendo especificaciones con serie: {}", serie);
