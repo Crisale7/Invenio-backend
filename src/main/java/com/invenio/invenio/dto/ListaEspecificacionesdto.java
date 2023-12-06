@@ -1,6 +1,8 @@
 package com.invenio.invenio.dto;
 
 public class ListaEspecificacionesdto {
+
+    private Integer id;
     private String serie;
     private String marca;
     private String estado;
@@ -15,7 +17,8 @@ public class ListaEspecificacionesdto {
     public ListaEspecificacionesdto() {
     }
 
-    public ListaEspecificacionesdto(String serie, String marca, String estado, Integer eq, Integer dimension_alto, Integer dimension_ancho, String ram, String procesador, String memoria, String color) {
+    public ListaEspecificacionesdto(Integer id, String serie, String marca, String estado, Integer eq, Integer dimension_alto, Integer dimension_ancho, String ram, String procesador, String memoria, String color) {
+        this.id = id;
         this.serie = serie;
         this.marca = marca;
         this.estado = estado;
@@ -26,6 +29,14 @@ public class ListaEspecificacionesdto {
         this.procesador = procesador;
         this.memoria = memoria;
         this.color = color;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getSerie() {
@@ -107,5 +118,4 @@ public class ListaEspecificacionesdto {
     public void setColor(String color) {
         this.color = color;
     }
-
 }

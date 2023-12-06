@@ -51,6 +51,7 @@ public class Especificacionesbl {
 
         for (Especificaciones especificacionesEntity : especificacionesEntities) {
             ListaEspecificacionesdto listaEspecificacionesdto = new ListaEspecificacionesdto(
+                    especificacionesEntity.getEspecificaciones_id() != 0 ? especificacionesEntity.getEspecificaciones_id() : 0,
                     especificacionesEntity.getSerie() != null && !especificacionesEntity.getSerie().isEmpty() ? especificacionesEntity.getSerie() : "No posee",
                     especificacionesEntity.getMarca() != null && !especificacionesEntity.getMarca().isEmpty() ? especificacionesEntity.getMarca() : "No posee",
                     especificacionesEntity.getEstado() != null && !especificacionesEntity.getEstado().isEmpty() ? especificacionesEntity.getEstado() : "No posee",
@@ -74,6 +75,7 @@ public class Especificacionesbl {
         Especificaciones especificacionesEntity = especificacionesrepository.findBySerie(serie);
         if (especificacionesEntity != null) {
             ListaEspecificacionesdto listaEspecificacionesdto = new ListaEspecificacionesdto(
+                    especificacionesEntity.getEspecificaciones_id() != 0 ? especificacionesEntity.getEspecificaciones_id() : 0,
                     especificacionesEntity.getSerie() != null && !especificacionesEntity.getSerie().isEmpty() ? especificacionesEntity.getSerie() : "No posee",
                     especificacionesEntity.getMarca() != null && !especificacionesEntity.getMarca().isEmpty() ? especificacionesEntity.getMarca() : "No posee",
                     especificacionesEntity.getEstado() != null && !especificacionesEntity.getEstado().isEmpty() ? especificacionesEntity.getEstado() : "No posee",
@@ -124,6 +126,7 @@ public class Especificacionesbl {
         Especificaciones especificaciones = especificacionesrepository.findById(id).orElse(null);
         if (especificaciones != null) {
             return new ListaEspecificacionesdto(
+                    especificaciones.getEspecificaciones_id() != 0 ? especificaciones.getEspecificaciones_id() : 0,
                     especificaciones.getSerie() != null && !especificaciones.getSerie().isEmpty() ? especificaciones.getSerie() : "No posee"
                     , especificaciones.getMarca() != null && !especificaciones.getMarca().isEmpty() ? especificaciones.getMarca() : "No posee"
                     , especificaciones.getEstado() != null && !especificaciones.getEstado().isEmpty() ? especificaciones.getEstado() : "No posee"
