@@ -7,12 +7,14 @@ import com.invenio.invenio.dto.ListaEspecificacionesdto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import java.util.*;
 
 @Service
 public class Especificacionesbl {
@@ -24,7 +26,7 @@ public class Especificacionesbl {
         this.especificacionesrepository = especificacionesrepository;
     }
 
-    public Especificacionesdto CrearEspecificaciones(String serie, String marca, String estado, Integer eq, Integer dimension_alto, Integer dimension_ancho, String ram, String procesador, String memoria, String color, Integer Activo_activoo_id) {
+    public Especificacionesdto CrearEspecificaciones(String serie, String marca, String estado, Integer eq, Integer dimension_alto, Integer dimension_ancho, String ram, String procesador, String memoria, String color, Integer Activo_activoo_id) throws MessagingException {
         LOG.info("Creando especificaciones con serie: {}", serie);
         Especificaciones especificacionesEntity = new Especificaciones();
         especificacionesEntity.setSerie(serie);
@@ -39,6 +41,31 @@ public class Especificacionesbl {
         especificacionesEntity.setColor(color);
         especificacionesEntity.setActivo_activo_id(Activo_activoo_id);
         especificacionesrepository.save(especificacionesEntity);
+        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+        mailSender.setHost("localhost");
+        mailSender.setPort(1025);
+        mailSender.setUsername("");
+        mailSender.setPassword("");
+        Properties props = mailSender.getJavaMailProperties();
+        mailSender.setJavaMailProperties(props);
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message, "utf-8");
+        helper.setFrom("invenio@gmail.com");
+        helper.setTo("usuario@gmail.com");
+        helper.setSubject("Especificaciones creadas");
+        helper.setText("<h2>Se han creado las especificaciones: </h2>"
+        + "<br><b>Serie: </b>" + serie
+        + "<br><b>Marca: </b>" + marca
+        + "<br><b>Estado: </b>" + estado
+        + "<br><b>Eq: </b>" + eq
+        + "<br><b>Dimension_alto: </b>" + dimension_alto
+        + "<br><b>Dimension_ancho: </b>" + dimension_ancho
+        + "<br><b>Ram: </b>" + ram
+        + "<br><b>Procesador: </b>" + procesador
+        + "<br><b>Memoria: </b>" + memoria
+        + "<br><b>Color: </b>" + color
+        , true);
+        mailSender.send(message);
         return new Especificacionesdto(especificacionesEntity.getEspecificaciones_id(), Activo_activoo_id, serie, marca, estado, eq, dimension_alto, dimension_ancho, ram, procesador, memoria, color);
     }
 

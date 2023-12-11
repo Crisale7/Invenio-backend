@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
 import java.util.List;
 
 @RestController
@@ -23,7 +24,7 @@ public class Especificacionesapi {
     }
 
     @PostMapping("/crear")
-    public int CrearEspecificaciones(@RequestParam String serie, @RequestParam String marca, @RequestParam String estado, @RequestParam int eq, @RequestParam int dimension_alto, @RequestParam int dimension_ancho, @RequestParam String ram, @RequestParam String procesador, @RequestParam String memoria, @RequestParam String color, @RequestParam int Activo_activoo_id) {
+    public int CrearEspecificaciones(@RequestParam String serie, @RequestParam String marca, @RequestParam String estado, @RequestParam int eq, @RequestParam int dimension_alto, @RequestParam int dimension_ancho, @RequestParam String ram, @RequestParam String procesador, @RequestParam String memoria, @RequestParam String color, @RequestParam int Activo_activoo_id) throws MessagingException {
         LOG.info("Recibida solicitud POST para crear especificaciones con serie: {}", serie);
         Especificacionesdto especificacionesdto = especificacionesbl.CrearEspecificaciones(serie, marca, estado, eq, dimension_alto, dimension_ancho, ram, procesador, memoria, color, Activo_activoo_id);
         return especificacionesdto.getEspecificaciones_id();
